@@ -21,6 +21,11 @@ export default function Recorder({ stream, onComplete }) {
     recorder.start();
   };
 
+  const stopRecording = () => {
+    setIsRecording(false);
+    recorder.stop();
+  };
+
   useEffect(() => {
     const mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = onDataAvailable;
@@ -32,8 +37,15 @@ export default function Recorder({ stream, onComplete }) {
     <div>
       {recorder !== null && (
         <div>
-          <button onClick={startRecording}>Start Recording</button>
-          <button onClick={stopRecording}>Stop Recording</button>
+          {isRecording ? (
+            <button type="button" onClick={stopRecording}>
+              Stop Recording
+            </button>
+          ) : (
+            <button type="button" onClick={startRecording}>
+              Start Recording
+            </button>
+          )}
         </div>
       )}
     </div>

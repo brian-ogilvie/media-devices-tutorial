@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import LiveVideo from './components/LiveVideo';
+import Recorder from './components/Recorder';
 
 function App() {
   const [stream, setStream] = useState(null);
@@ -13,9 +14,12 @@ function App() {
     setStream(mediaStream);
   }
 
+  function processDataBlob(blob) {
+    console.log('processDataBlob');
+  }
+
   function releaseStream() {
     if (stream !== null) {
-      console.log('releasing stream');
       stream.getTracks().forEach(track => track.stop());
     }
   }
@@ -29,6 +33,9 @@ function App() {
     <div className="App">
       <h1>Go Vlog Yourself</h1>
       {stream !== null && <LiveVideo stream={stream} />}
+      {stream !== null && (
+        <Recorder stream={stream} onComplete={processDataBlob} />
+      )}
     </div>
   );
 }
