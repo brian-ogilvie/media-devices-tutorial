@@ -3,6 +3,7 @@ import React from 'react';
 
 export default function VideosList({ videos }) {
   const renderVideos = () => {
+    if (videos.length === 0) return null;
     return videos.map((video, i) => {
       const { id, url } = video;
       return (
