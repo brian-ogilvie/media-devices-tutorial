@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useEffect, useRef } from 'react';
-import './LiveVideo.css';
 
 export default function LiveVideo({ stream }) {
   const video = useRef();

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import LiveVideo from './components/LiveVideo';
 import Recorder from './components/Recorder';
+import VideosList from './components/VideosList';
 
 function App() {
   const [stream, setStream] = useState(null);
+  const [videos, setVideos] = useState([]);
 
   async function getStream() {
     const mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -15,7 +17,13 @@ function App() {
   }
 
   function processDataBlob(blob) {
-    console.log('processDataBlob');
+    const url = URL.createObjectURL(blob);
+    setVideos(prev =>
+      prev.concat({
+        url,
+        id: Math.ceil(Math.random() * 1000),
+      })
+    );
   }
 
   function releaseStream() {
@@ -26,16 +34,22 @@ function App() {
 
   useEffect(() => {
     getStream();
-    return releaseStream;
+    return () => releaseStream();
   }, []);
 
   return (
     <div className="App">
-      <h1>Go Vlog Yourself</h1>
-      {stream !== null && <LiveVideo stream={stream} />}
-      {stream !== null && (
-        <Recorder stream={stream} onComplete={processDataBlob} />
-      )}
+      <h1 className="top-heading">Go Vlog Yourself</h1>
+      <main>
+        {stream !== null && (
+          <div className="recorder-container">
+            <h2 className="secondary-heading">Just Vlog It!</h2>
+            <LiveVideo stream={stream} />
+            <Recorder stream={stream} onComplete={processDataBlob} />
+          </div>
+        )}
+        {videos.length > 0 && <VideosList videos={videos} />}
+      </main>
     </div>
   );
 }

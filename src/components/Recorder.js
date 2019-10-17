@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import RecordingTimer from './RecordingTimer';
 
 export default function Recorder({ stream, onComplete }) {
   const [recorder, setRecorder] = useState(null);
@@ -7,13 +8,15 @@ export default function Recorder({ stream, onComplete }) {
 
   const onDataAvailable = e => {
     const { data } = e;
-    setDataChunks(current => [...current, data]);
+    setDataChunks(currentChunks => [...currentChunks, data]);
   };
 
   const onStop = () => {
-    const blob = new Blob(dataChunks, { type: 'video/mp4' });
-    setDataChunks([]);
-    onComplete(blob);
+    setDataChunks(currentChunks => {
+      const blob = new Blob(currentChunks, { type: 'video/mp4' });
+      setTimeout(() => onComplete(blob), 0);
+      return [];
+    });
   };
 
   const startRecording = () => {
@@ -34,18 +37,26 @@ export default function Recorder({ stream, onComplete }) {
   }, [stream]);
 
   return (
-    <div>
+    <div className="Recorder">
+      <RecordingTimer running={isRecording} />
       {recorder !== null && (
-        <div>
-          {isRecording ? (
-            <button type="button" onClick={stopRecording}>
-              Stop Recording
-            </button>
-          ) : (
-            <button type="button" onClick={startRecording}>
-              Start Recording
-            </button>
-          )}
+        <div className="Recorder__button-row">
+          <button
+            className="Recorder__button Recorder__start"
+            type="button"
+            onClick={startRecording}
+            disabled={isRecording}
+          >
+            Start Recording
+          </button>
+          <button
+            className="Recorder__button Recorder__stop"
+            type="button"
+            onClick={stopRecording}
+            disabled={!isRecording}
+          >
+            Stop Recording
+          </button>
         </div>
       )}
     </div>

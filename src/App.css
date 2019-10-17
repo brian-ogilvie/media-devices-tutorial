@@ -1,0 +1,109 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.top-heading, .secondary-heading {
+  font-family: 'Lobster', cursive;
+}
+
+.top-heading {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.secondary-heading {
+  font-size: 2rem;
+  margin: 0 auto .5rem;
+  text-align: center;
+}
+
+.recorder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.Recorder {
+  margin: 10px 0;
+}
+
+.Recorder__button-row {
+  margin-top: 5px;
+}
+
+.Recorder__button {
+  padding: 5px 15px;
+  margin: 0 5px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  transition: all .2s linear;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+}
+
+.Recorder__start {
+  background-color: teal;
+  border: 1px solid turquoise;
+}
+
+.Recorder__stop {
+  background-color: firebrick;
+  border: 1px solid tomato;
+}
+
+.Recorder__button:disabled {
+  cursor: not-allowed;
+  opacity: .38;
+}
+
+.Recorder__button:enabled:hover {
+  transform: scale(1.07, 1.07);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
+}
+
+.RecordingTimer {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.LiveVideo {
+  transform: rotateY(180deg);
+  width: 400px;
+  height: 300px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, .4);
+}
+
+.VideosList__ul {
+  list-style: none;
+  padding: 0;
+}
+
+.VideosList__ul > li {
+  margin: 10px 0;
+  width: 500px;
+  padding: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .3);
+}
+
+.VideosList__ul > li:nth-of-type(2n) {
+  background-color: grey;
+}
+
+.VideosList__ul > li:nth-of-type(2n + 1) {
+  background-color: lightgray;
+}
+
+.VideosList__video {
+  width: 480px;
+  height: 360px;
+  margin-top: 5px;
+}
