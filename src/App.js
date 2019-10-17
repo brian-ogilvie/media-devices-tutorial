@@ -8,15 +8,15 @@ function App() {
   const [stream, setStream] = useState(null);
   const [videos, setVideos] = useState([]);
 
-  async function getStream() {
+  const getStream = async () => {
     const mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     });
     setStream(mediaStream);
-  }
+  };
 
-  function processDataBlob(blob) {
+  const processDataBlob = blob => {
     const url = URL.createObjectURL(blob);
     setVideos(prev =>
       prev.concat({
@@ -24,17 +24,17 @@ function App() {
         id: Math.ceil(Math.random() * 1000),
       })
     );
-  }
+  };
 
-  function releaseStream() {
+  const releaseStream = () => {
     if (stream !== null) {
       stream.getTracks().forEach(track => track.stop());
     }
-  }
+  };
 
   useEffect(() => {
     getStream();
-    return () => releaseStream();
+    return releaseStream;
   }, []);
 
   return (
