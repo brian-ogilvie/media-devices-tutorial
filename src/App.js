@@ -43,9 +43,11 @@ function App() {
       <main>
         <div className="recorder-container">
           <h2 className="secondary-heading">Just Vlog It!</h2>
-          {stream !== null && <LiveVideo stream={stream} />}
           {stream !== null && (
-            <Recorder stream={stream} onComplete={processDataBlob} />
+            <>
+              <LiveVideo stream={stream} />
+              <Recorder stream={stream} onComplete={processDataBlob} />
+            </>
           )}
         </div>
         <VideosList videos={videos} />
