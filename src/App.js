@@ -36,7 +36,12 @@ function App() {
   useEffect(() => {
     getStream();
     return releaseStream;
-  }, [window.onorientationchange]);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('orientationchange', getStream);
+    return () => window.removeEventListener('orientationchange', getStream);
+  }, []);
 
   return (
     <div className="App">
