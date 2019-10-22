@@ -11,17 +11,17 @@ export default function LiveVideo({ stream }) {
     }
   }, [video, stream]);
 
-  const handleClick = () => {
-    video.current.volume = 0;
-    video.current.play();
-  };
+  // const handleClick = () => {
+  //   video.current.volume = 0;
+  //   video.current.play();
+  // };
 
   return (
     <video
       ref={video}
       autoPlay
       className="LiveVideo"
-      onClick={handleClick}
+      // onClick={handleClick}
       playsInline
     />
   );
