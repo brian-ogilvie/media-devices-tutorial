@@ -12,6 +12,7 @@ export default function LiveVideo({ stream }) {
   }, [video, stream]);
 
   const handleClick = () => {
+    video.current.volume = 0;
     video.current.play();
   };
 
