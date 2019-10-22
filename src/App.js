@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     getStream();
     return releaseStream;
-  }, []);
+  }, [window.onorientationchange]);
 
   return (
     <div className="App">
