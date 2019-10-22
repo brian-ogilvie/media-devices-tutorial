@@ -110,3 +110,28 @@ main {
   height: 360px;
   margin-top: 5px;
 }
+
+.OrientationWarning {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background-color: black;
+  text-align: center;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-size: 1.2rem;
+}
+
+@media screen and (hover: none) and (orientation: portrait) {
+  .OrientationWarning {
+    display: flex;
+  }
+  main {
+    display: none;
+  }
+}

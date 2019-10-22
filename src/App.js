@@ -3,6 +3,7 @@ import './App.css';
 import LiveVideo from './components/LiveVideo';
 import Recorder from './components/Recorder';
 import VideosList from './components/VideosList';
+import OrientationWarning from './components/OrientationWarning';
 
 function App() {
   const [stream, setStream] = useState(null);
@@ -52,6 +53,7 @@ function App() {
         </div>
         <VideosList videos={videos} />
       </main>
+      <OrientationWarning />
     </div>
   );
 }
