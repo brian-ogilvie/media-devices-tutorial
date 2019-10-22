@@ -10,5 +10,14 @@ export default function LiveVideo({ stream }) {
     }
   }, [video, stream]);
 
-  return <video ref={video} autoPlay muted className="LiveVideo" />;
+  return (
+    <video
+      ref={video}
+      autoPlay
+      muted
+      className="LiveVideo"
+      playsInline
+      concurrentplaybackpermitted="true"
+    />
+  );
 }
