@@ -11,5 +11,11 @@ export default function LiveVideo({ stream }) {
     }
   }, [video, stream]);
 
-  return <video ref={video} autoPlay className="LiveVideo" />;
+  const handleClick = () => {
+    video.current.play();
+  };
+
+  return (
+    <video ref={video} autoPlay className="LiveVideo" onClick={handleClick} />
+  );
 }
