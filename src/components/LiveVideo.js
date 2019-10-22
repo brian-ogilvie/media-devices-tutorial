@@ -6,23 +6,9 @@ export default function LiveVideo({ stream }) {
 
   useEffect(() => {
     if (video.current !== null) {
-      video.current.volume = 0;
       video.current.srcObject = stream;
     }
   }, [video, stream]);
 
-  // const handleClick = () => {
-  //   video.current.volume = 0;
-  //   video.current.play();
-  // };
-
-  return (
-    <video
-      ref={video}
-      autoPlay
-      className="LiveVideo"
-      // onClick={handleClick}
-      playsInline
-    />
-  );
+  return <video ref={video} autoPlay muted className="LiveVideo" playsInline />;
 }
