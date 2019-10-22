@@ -16,6 +16,12 @@ export default function LiveVideo({ stream }) {
   };
 
   return (
-    <video ref={video} autoPlay className="LiveVideo" onClick={handleClick} />
+    <video
+      ref={video}
+      autoPlay
+      className="LiveVideo"
+      onClick={handleClick}
+      playsInline
+    />
   );
 }
