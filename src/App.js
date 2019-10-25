@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import LiveVideo from './components/LiveVideo';
 import VideosList from './components/VideosList';
 import OrientationWarning from './components/OrientationWarning';
 
@@ -33,7 +32,6 @@ function App() {
       <main>
         <div className="Recorder__container">
           <h2 className="secondary-heading">Just Vlog It!</h2>
-          {stream !== null && <LiveVideo stream={stream} />}
         </div>
         <VideosList videos={videos} />
       </main>
