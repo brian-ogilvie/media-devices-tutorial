@@ -38,11 +38,6 @@ function App() {
     return releaseStream;
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('orientationchange', getStream);
-    return () => window.removeEventListener('orientationchange', getStream);
-  }, []);
-
   return (
     <div className="App">
       <h1 className="top-heading">Go Vlog Yourself</h1>

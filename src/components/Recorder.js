@@ -30,33 +30,7 @@ export default function Recorder({ stream, onComplete }) {
     recorder.stop();
   };
 
-  const handleNoRecorder = () => {
-    if (window.safari !== undefined) {
-      alert(
-        'It appears that you are using the Safari browser. In order to use this site, you will need to enable the MediaRecorder feature.\nPlease select the following from the Menu Bar:\n Develop -> Experinental Features -> MediaRecorder\nThen refresh your page.'
-      );
-      return;
-    }
-    const { userAgent } = navigator;
-    const iOS = /iP[ad|hone]/i.test(userAgent);
-    const webKit = /WebKit/i.test(userAgent);
-    const iOSSafari = iOS && webKit && !/CriOS/i.test(userAgent);
-    if (iOSSafari) {
-      alert(
-        'It appears that you are using iOS Safari. In order to use this site, you will need to enable the MediaRecorder feature.\nPlease do so by going to Settings -> Safari -> Advanced -> Experimental Features, and toggle MediaRecorder on.\nThen refresh your page.'
-      );
-      return;
-    }
-    alert(
-      'Unfortunately your browser does not support the features of this app. Please visit this site in Chrome, Firefox, or Safari.'
-    );
-  };
-
   useEffect(() => {
-    if (!window.MediaRecorder) {
-      handleNoRecorder();
-      return;
-    }
     const mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = onDataAvailable;
     mediaRecorder.onstop = onStop;
