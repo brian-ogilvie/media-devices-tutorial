@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import LiveVideo from './components/LiveVideo';
-import Recorder from './components/Recorder';
 import VideosList from './components/VideosList';
 import OrientationWarning from './components/OrientationWarning';
 
@@ -15,16 +14,6 @@ function App() {
       video: true,
     });
     setStream(mediaStream);
-  };
-
-  const processDataBlob = blob => {
-    const url = URL.createObjectURL(blob);
-    setVideos(prev =>
-      prev.concat({
-        url,
-        id: Math.ceil(Math.random() * 1000),
-      })
-    );
   };
 
   const releaseStream = () => {
@@ -44,12 +33,7 @@ function App() {
       <main>
         <div className="Recorder__container">
           <h2 className="secondary-heading">Just Vlog It!</h2>
-          {stream !== null && (
-            <div className="Recorder__inner-container">
-              <LiveVideo stream={stream} />
-              <Recorder stream={stream} onComplete={processDataBlob} />
-            </div>
-          )}
+          {stream !== null && <LiveVideo stream={stream} />}
         </div>
         <VideosList videos={videos} />
       </main>

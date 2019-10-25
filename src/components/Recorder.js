@@ -12,31 +12,6 @@ export default function Recorder({ stream, onComplete }) {
     setDataChunks(currentChunks => [...currentChunks, data]);
   };
 
-  const onStop = () => {
-    setDataChunks(currentChunks => {
-      const blob = new Blob(currentChunks, { type: 'video/mp4' });
-      setTimeout(() => onComplete(blob), 0);
-      return [];
-    });
-  };
-
-  const startRecording = () => {
-    setIsRecording(true);
-    recorder.start();
-  };
-
-  const stopRecording = () => {
-    setIsRecording(false);
-    recorder.stop();
-  };
-
-  useEffect(() => {
-    const mediaRecorder = new MediaRecorder(stream);
-    mediaRecorder.ondataavailable = onDataAvailable;
-    mediaRecorder.onstop = onStop;
-    setRecorder(mediaRecorder);
-  }, [stream]);
-
   return (
     <div className="Recorder">
       <RecordingTimer running={isRecording} />
