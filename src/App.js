@@ -47,13 +47,13 @@ function App() {
     <div className="App">
       <h1 className="top-heading">Go Vlog Yourself</h1>
       <main>
-        <div className="recorder-container">
+        <div className="Recorder__container">
           <h2 className="secondary-heading">Just Vlog It!</h2>
           {stream !== null && (
-            <>
+            <div className="Recorder__inner-container">
               <LiveVideo stream={stream} />
               <Recorder stream={stream} onComplete={processDataBlob} />
-            </>
+            </div>
           )}
         </div>
         <VideosList videos={videos} />

@@ -18,13 +18,6 @@ body {
   text-align: center;
 }
 
-.recorder-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-}
-
 main {
   display: flex;
   flex-flow: row wrap;
@@ -34,12 +27,27 @@ main {
   margin: 0 auto;
 }
 
+/* .Recorder__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+} */
+
+.Recorder__inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+
 .Recorder {
   margin: 10px 0;
 }
 
 .Recorder__button-row {
   margin-top: 5px;
+  position: relative;
 }
 
 .Recorder__button {
@@ -66,11 +74,6 @@ main {
 .Recorder__button:disabled {
   cursor: not-allowed;
   opacity: .38;
-}
-
-.Recorder__button:enabled:hover {
-  transform: scale(1.07, 1.07);
-  box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
 }
 
 .RecordingTimer {
@@ -133,5 +136,54 @@ main {
   }
   main {
     display: none;
+  }
+}
+
+@media screen and (hover: hover) {
+  .Recorder__button:enabled:hover {
+    transform: scale(1.07, 1.07);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .top-heading {
+    font-size: 2rem;
+    margin-bottom: -.8rem;
+  }
+  .secondary-heading {
+    font-size: 1.5rem;
+  }
+  main {
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+  .Recorder {
+    padding-top: 20px;
+  }
+  .Recorder__container {
+    width: 100%;
+    padding: 10px;
+  }
+  .Recorder__button-row::after {
+    position: relative;
+    content: "(Scroll down to see your videos after recording)";
+    top: 10px;
+    left: 0;
+    right: 0;
+  }
+  .Recorder__inner-container {
+    flex-flow: row-reverse;
+    width: 100%;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  .Recorder__button {
+    display: block;
+    margin: 5px auto;
+  }
+  .LiveVideo {
+    margin-left: 10px;
   }
 }
